@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820" role="img" aria-labelledby="title desc">
-  <title id="title">Computer vision research visual</title>
-  <desc id="desc">A professional medical imaging style visual showing retinal segmentation, model attention, and evaluation signals.</desc>
+  <title id="title">Transformer segmenter thesis visual</title>
+  <desc id="desc">A professional medical imaging style visual showing unpublished thesis work on central retinal blood vessel segmentation with a Transformer-based segmenter.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#f8fbf8"/>
@@ -26,7 +26,7 @@
     <circle cx="126" cy="114" r="9" fill="#b54a3a"/>
     <circle cx="158" cy="114" r="9" fill="#c87524"/>
     <circle cx="190" cy="114" r="9" fill="#2f7d5a"/>
-    <text x="240" y="122" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">Retinal Vessel Segmentation Lab</text>
+    <text x="240" y="122" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">Transformer Segmenter Thesis</text>
   </g>
   <g transform="translate(142 196)">
     <rect width="430" height="430" rx="24" fill="#121926"/>
@@ -56,19 +56,19 @@
     <g transform="translate(0 34)">
       <rect width="392" height="76" rx="16" fill="#f6f8f6" stroke="#dbe3dc"/>
       <circle cx="38" cy="38" r="12" fill="#1f5f8b"/>
-      <text x="68" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#17202a">Limited medical image data</text>
+      <text x="68" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#17202a">Small retinal datasets</text>
       <text x="68" y="56" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#637381">Preprocessing, augmentation, vessel labels</text>
     </g>
     <g transform="translate(0 130)">
       <rect width="392" height="76" rx="16" fill="#f6f8f6" stroke="#dbe3dc"/>
       <circle cx="38" cy="38" r="12" fill="#2f7d5a"/>
-      <text x="68" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#17202a">Transformer attention</text>
+      <text x="68" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#17202a">Transformer-based segmenter</text>
       <text x="68" y="56" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#637381">Global context for thin vessel structure</text>
     </g>
     <g transform="translate(0 226)">
       <rect width="392" height="76" rx="16" fill="#f6f8f6" stroke="#dbe3dc"/>
       <circle cx="38" cy="38" r="12" fill="#c87524"/>
-      <text x="68" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#17202a">Evaluation and ablation</text>
+      <text x="68" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#17202a">Vessel segmentation output</text>
       <text x="68" y="56" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#637381">Data efficiency, segmentation quality</text>
     </g>
     <path d="M196 110v20M196 206v20" stroke="#bdc9c0" stroke-width="3" stroke-linecap="round"/>
@@ -77,7 +77,7 @@
     <rect width="112" height="12" rx="6" fill="#1f5f8b"/>
     <rect y="28" width="188" height="12" rx="6" fill="#2f7d5a"/>
     <rect y="56" width="150" height="12" rx="6" fill="#c87524"/>
-    <text x="220" y="38" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="900" fill="#17202a">Computer Vision Research</text>
-    <text x="220" y="68" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#637381">Medical imaging, segmentation, data-efficient models</text>
+    <text x="220" y="38" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="900" fill="#17202a">Unpublished Thesis Work</text>
+    <text x="220" y="68" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#637381">Central retinal blood vessel segmentation for small datasets</text>
   </g>
 </svg>

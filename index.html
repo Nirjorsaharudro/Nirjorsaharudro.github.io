@@ -59,6 +59,53 @@
       mask-image: linear-gradient(to bottom, black 0%, black 38%, transparent 88%);
     }
 
+    .cursor-signal {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 0;
+      width: 360px;
+      height: 360px;
+      pointer-events: none;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate3d(calc(var(--cursor-x, 50vw) - 50%), calc(var(--cursor-y, 50vh) - 50%), 0);
+      transition: opacity 0.25s ease;
+    }
+
+    .has-pointer .cursor-signal {
+      opacity: 0.68;
+    }
+
+    .cursor-signal::before,
+    .cursor-signal::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+
+    .cursor-signal::before {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(31, 95, 139, 0.22), transparent 45%),
+        radial-gradient(circle at 62% 38%, rgba(47, 125, 90, 0.18), transparent 38%),
+        radial-gradient(circle at 38% 64%, rgba(200, 117, 36, 0.16), transparent 34%);
+      filter: blur(18px);
+    }
+
+    .cursor-signal::after {
+      inset: 86px;
+      border: 1px solid rgba(31, 95, 139, 0.18);
+      box-shadow:
+        0 0 0 18px rgba(47, 125, 90, 0.045),
+        0 0 0 42px rgba(200, 117, 36, 0.035);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
     img {
       display: block;
       max-width: 100%;
@@ -115,15 +162,17 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(246, 248, 246, 0.88);
-      border-bottom: 1px solid transparent;
+      background: rgba(246, 248, 246, 0.82);
+      border-bottom: 1px solid rgba(189, 201, 192, 0.42);
       backdrop-filter: blur(16px);
-      transition: border-color 0.2s ease, background 0.2s ease;
+      box-shadow: 0 12px 36px rgba(23, 32, 42, 0.03);
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
 
     .site-header.is-scrolled {
       background: rgba(246, 248, 246, 0.96);
       border-color: var(--line);
+      box-shadow: 0 18px 44px rgba(23, 32, 42, 0.08);
     }
 
     .nav {
@@ -167,16 +216,18 @@
     }
 
     .nav-links a {
-      padding: 8px 0;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s ease, border-color 0.2s ease;
+      padding: 7px 10px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
     .nav-links a:hover,
     .nav-links a:focus-visible,
     .nav-links a.is-active {
       color: var(--ink);
-      border-color: var(--amber);
+      border-color: rgba(31, 95, 139, 0.16);
+      background: rgba(255, 255, 255, 0.66);
       outline: none;
     }
 
@@ -301,6 +352,7 @@
     .meta-pill {
       display: inline-flex;
       align-items: center;
+      flex: 0 0 auto;
       min-height: 34px;
       padding: 6px 11px;
       border: 1px solid var(--line);
@@ -434,6 +486,7 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.45;
+      overflow-wrap: anywhere;
     }
 
     section {
@@ -466,14 +519,57 @@
       gap: 24px;
     }
 
+    .workflow-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: -10px 0 24px;
+    }
+
+    .workflow-step {
+      position: relative;
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid rgba(31, 95, 139, 0.12);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 248, 246, 0.78)),
+        var(--surface);
+      box-shadow: 0 16px 42px rgba(23, 32, 42, 0.05);
+      overflow: hidden;
+    }
+
+    .workflow-step::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: var(--step-color, var(--blue));
+    }
+
+    .workflow-step span {
+      color: var(--step-color, var(--blue));
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .workflow-step strong {
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
     .research-showcase {
       display: grid;
       grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
       overflow: hidden;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(189, 201, 192, 0.82);
       border-radius: 8px;
       background: var(--surface);
-      box-shadow: 0 18px 50px rgba(23, 32, 42, 0.06);
+      box-shadow: 0 28px 70px rgba(23, 32, 42, 0.08);
     }
 
     .research-showcase.reverse {
@@ -481,9 +577,28 @@
     }
 
     .showcase-media {
+      position: relative;
+      display: grid;
+      place-items: center;
       min-width: 0;
-      background: #eef4ef;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(95, 216, 218, 0.14), transparent 28%),
+        radial-gradient(circle at 88% 74%, rgba(200, 117, 36, 0.13), transparent 26%),
+        linear-gradient(135deg, #e8f6f2, #f7faf4 68%);
       border-right: 1px solid var(--line);
+    }
+
+    .showcase-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(31, 95, 139, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 95, 139, 0.055) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(135deg, black, transparent 82%);
+      pointer-events: none;
     }
 
     .research-showcase.reverse .showcase-media {
@@ -491,12 +606,451 @@
       border-left: 1px solid var(--line);
     }
 
-    .showcase-media img {
+    .showcase-media > img {
+      position: relative;
+      z-index: 1;
       width: 100%;
       height: 100%;
       min-height: 410px;
       padding: 16px;
       object-fit: contain;
+    }
+
+    .creative-preview {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 560px);
+      min-height: 430px;
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      padding: 28px;
+      color: var(--ink);
+    }
+
+    .creative-preview::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(23, 32, 42, 0.08);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.66)),
+        rgba(255, 255, 255, 0.72);
+      box-shadow: 0 28px 80px rgba(23, 32, 42, 0.13);
+      backdrop-filter: blur(10px);
+    }
+
+    .preview-topline,
+    .preview-body,
+    .preview-caption,
+    .rag-query {
+      position: relative;
+      z-index: 1;
+    }
+
+    .preview-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 0;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .preview-topline span {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .window-dots {
+      display: inline-flex;
+      flex: 0 0 auto;
+      gap: 7px;
+    }
+
+    .window-dots i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .window-dots i:nth-child(2) {
+      background: var(--amber);
+    }
+
+    .window-dots i:nth-child(3) {
+      background: var(--green);
+    }
+
+    .preview-body {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .thesis-workflow {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .segmentation-lab {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .scan-panel {
+      position: relative;
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1 / 1;
+      min-height: 210px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: #101823;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+    .scan-panel::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      z-index: 2;
+      padding: 5px 8px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .scan-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 48%, transparent 54%, rgba(0, 0, 0, 0.28) 100%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 32%, rgba(95, 216, 218, 0.06) 100%);
+      pointer-events: none;
+    }
+
+    .fundus-panel {
+      background:
+        linear-gradient(180deg, rgba(10, 18, 26, 0.02), rgba(10, 18, 26, 0.12)),
+        url("assets/images.jpeg") left center / 214% auto no-repeat,
+        #101823;
+    }
+
+    .mask-panel {
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.16)),
+        url("assets/images.jpeg") right center / 214% auto no-repeat,
+        #070b0f;
+    }
+
+    .transformer-chip {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(95, 216, 218, 0.28), transparent 50%),
+        var(--ink);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.1;
+      box-shadow: 0 18px 34px rgba(23, 32, 42, 0.22);
+    }
+
+    .transformer-chip::before,
+    .transformer-chip::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 16px;
+      height: 2px;
+      background: rgba(31, 95, 139, 0.36);
+    }
+
+    .transformer-chip::before {
+      right: 100%;
+    }
+
+    .transformer-chip::after {
+      left: 100%;
+    }
+
+    .thesis-nodes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .node-card {
+      display: grid;
+      grid-template-columns: 12px 1fr;
+      gap: 10px;
+      align-items: start;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .node-card::before {
+      content: "";
+      width: 11px;
+      height: 11px;
+      margin-top: 4px;
+      border-radius: 50%;
+      background: var(--node-color, var(--blue));
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--node-color, var(--blue)) 14%, transparent);
+    }
+
+    .node-card strong,
+    .rag-box strong {
+      display: block;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .node-card span,
+    .rag-box span,
+    .preview-caption span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .preview-caption {
+      display: grid;
+      grid-template-columns: minmax(120px, 0.55fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .preview-bars {
+      display: grid;
+      gap: 8px;
+    }
+
+    .preview-bars i {
+      height: 8px;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+
+    .preview-bars i:nth-child(2) {
+      width: 78%;
+      background: var(--green);
+    }
+
+    .preview-bars i:nth-child(3) {
+      width: 62%;
+      background: var(--amber);
+    }
+
+    .caption-lockup strong {
+      display: block;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .creative-preview.rag-preview::before {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.72)),
+        rgba(255, 255, 255, 0.78);
+    }
+
+    .rag-workflow {
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr) minmax(0, 0.78fr);
+      align-items: stretch;
+    }
+
+    .rag-box {
+      position: relative;
+      display: grid;
+      align-content: center;
+      gap: 9px;
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(246, 248, 246, 0.86);
+    }
+
+    .rag-engine {
+      background: var(--ink);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 18px 45px rgba(23, 32, 42, 0.16);
+    }
+
+    .rag-engine strong,
+    .rag-engine .rag-track strong {
+      color: #fff;
+    }
+
+    .rag-engine span {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .rag-doc,
+    .rag-line,
+    .rag-track,
+    .answer-pill {
+      border-radius: 7px;
+    }
+
+    .rag-doc {
+      padding: 7px 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .rag-track {
+      position: relative;
+      display: grid;
+      grid-template-columns: 14px 1fr;
+      gap: 9px;
+      align-items: center;
+      padding: 10px;
+      overflow: hidden;
+      background: #243340;
+    }
+
+    .rag-track::before {
+      content: "";
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--track-color, var(--blue));
+      box-shadow: 0 0 0 7px color-mix(in srgb, var(--track-color, var(--blue)) 18%, transparent);
+    }
+
+    .rag-track::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+      transform: translateX(-100%);
+      animation: signalFlow 3.6s ease-in-out infinite;
+    }
+
+    .answer-card {
+      background: #fff;
+    }
+
+    .answer-card strong {
+      color: var(--blue);
+    }
+
+    .rag-line {
+      height: 8px;
+      background: #dbe3dc;
+    }
+
+    .rag-line:nth-of-type(2) {
+      width: 78%;
+    }
+
+    .rag-line:nth-of-type(3) {
+      width: 62%;
+    }
+
+    .answer-pill {
+      justify-self: start;
+      padding: 7px 10px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .rag-query {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    .rag-query span {
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .rag-query span:nth-child(1) {
+      color: var(--blue);
+      background: #eaf2ff;
+      border-color: #cfe2f3;
+    }
+
+    .rag-query span:nth-child(2) {
+      color: var(--green);
+      background: #edf7f1;
+      border-color: #cce6d8;
+    }
+
+    .rag-query span:nth-child(3) {
+      color: var(--amber);
+      background: #fff3e5;
+      border-color: #efd4b6;
+    }
+
+    .rag-query span:nth-child(4) {
+      color: var(--red);
+      background: #f8ecea;
+      border-color: #edcec9;
+    }
+
+    @keyframes signalFlow {
+      0%,
+      35% {
+        transform: translateX(-100%);
+      }
+
+      70%,
+      100% {
+        transform: translateX(100%);
+      }
     }
 
     .showcase-content {
@@ -784,12 +1338,25 @@
       background: var(--surface);
     }
 
+    .research-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .research-panel.publication-panel {
+      border-left-color: var(--blue);
+    }
+
     .research-label {
       color: var(--green);
       font-size: 12px;
       font-weight: 900;
       letter-spacing: 0;
       text-transform: uppercase;
+    }
+
+    .publication-panel .research-label {
+      color: var(--blue);
     }
 
     .research-panel h3 {
@@ -972,6 +1539,10 @@
         opacity: 1;
         transform: none;
       }
+
+      .cursor-signal {
+        display: none;
+      }
     }
 
     @media (max-width: 900px) {
@@ -1007,6 +1578,10 @@
         grid-template-columns: 1fr;
       }
 
+      .workflow-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .hero h1 {
         font-size: 64px;
       }
@@ -1034,9 +1609,14 @@
         order: -1;
       }
 
-      .showcase-media img {
+      .showcase-media > img {
         min-height: 0;
         aspect-ratio: 16 / 10;
+      }
+
+      .creative-preview {
+        width: min(100%, 620px);
+        min-height: 390px;
       }
 
       .section-head,
@@ -1053,7 +1633,7 @@
 
     @media (max-width: 640px) {
       .wrap {
-        width: calc(100% - 48px);
+        width: calc(100% - 28px);
       }
 
       .hero {
@@ -1065,17 +1645,22 @@
       }
 
       .hero h1 {
-        max-width: 100%;
-        font-size: 40px;
-        line-height: 1.02;
+        max-width: 330px;
+        font-size: 32px;
+        line-height: 1.08;
+        overflow-wrap: anywhere;
       }
 
       .role {
+        max-width: 330px;
         font-size: 19px;
+        overflow-wrap: anywhere;
       }
 
       .lede {
+        max-width: 330px;
         font-size: 16px;
+        overflow-wrap: anywhere;
       }
 
       .nav-links {
@@ -1086,7 +1671,16 @@
       }
 
       .section-head h2 {
-        font-size: 32px;
+        max-width: 330px;
+        font-size: 28px;
+        overflow-wrap: anywhere;
+      }
+
+      .section-head p,
+      .research-showcase p,
+      .demo-card p {
+        max-width: 330px;
+        overflow-wrap: anywhere;
       }
 
       .research-panel h3 {
@@ -1103,7 +1697,9 @@
 
       .research-showcase h3,
       .demo-lab-head h3 {
-        font-size: 26px;
+        max-width: 330px;
+        font-size: 23px;
+        overflow-wrap: anywhere;
       }
 
       .demo-card h3,
@@ -1112,7 +1708,65 @@
       }
 
       .showcase-content {
+        overflow: hidden;
         padding: 24px;
+      }
+
+      .media-stack {
+        width: 100%;
+      }
+
+      .system-map,
+      .map-item span {
+        max-width: 330px;
+      }
+
+      .creative-preview {
+        width: 100%;
+        min-height: auto;
+        padding: 18px;
+      }
+
+      .creative-preview::before {
+        inset: 8px;
+      }
+
+      .preview-topline {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .preview-topline span {
+        white-space: normal;
+      }
+
+      .preview-caption {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-body,
+      .rag-workflow {
+        grid-template-columns: 1fr;
+      }
+
+      .workflow-strip,
+      .thesis-nodes,
+      .segmentation-lab {
+        grid-template-columns: 1fr;
+      }
+
+      .transformer-chip {
+        width: 100%;
+        height: 42px;
+      }
+
+      .transformer-chip::before,
+      .transformer-chip::after {
+        display: none;
+      }
+
+      .scan-panel {
+        min-height: 0;
       }
 
       .evidence-grid {
@@ -1155,6 +1809,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="cursor-signal" aria-hidden="true"></div>
 
   <header class="site-header" id="siteHeader">
     <div class="wrap nav">
@@ -1242,15 +1897,73 @@
           </div>
         </div>
 
+        <div class="workflow-strip" aria-label="Research and deployment workflow">
+          <div class="workflow-step" style="--step-color: var(--blue);">
+            <span>01</span>
+            <strong>Ingest visual data</strong>
+          </div>
+          <div class="workflow-step" style="--step-color: var(--green);">
+            <span>02</span>
+            <strong>Train focused models</strong>
+          </div>
+          <div class="workflow-step" style="--step-color: var(--amber);">
+            <span>03</span>
+            <strong>Evaluate outputs</strong>
+          </div>
+          <div class="workflow-step" style="--step-color: var(--red);">
+            <span>04</span>
+            <strong>Deploy usable systems</strong>
+          </div>
+        </div>
+
         <div class="work-research-stack">
           <article class="research-showcase">
             <div class="showcase-media">
-              <img src="assets/cv-research-visual.svg" alt="Medical computer vision research visual showing retinal vessel segmentation and Transformer attention">
+              <div class="creative-preview thesis-preview" aria-label="Transformer thesis preview for central retinal blood vessel segmentation">
+                <div class="preview-topline">
+                  <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span>Transformer Segmenter Thesis</span>
+                </div>
+                <div class="preview-body thesis-workflow">
+                  <div class="segmentation-lab">
+                    <div class="scan-panel fundus-panel" data-label="Fundus input"></div>
+                    <div class="transformer-chip" aria-hidden="true">ViT<br>Seg</div>
+                    <div class="scan-panel mask-panel" data-label="Vessel mask"></div>
+                  </div>
+                  <div class="thesis-nodes">
+                    <div class="node-card" style="--node-color: var(--blue);">
+                      <span>
+                        <strong>Small retinal datasets</strong>
+                        <span>Preprocessing, augmentation, vessel labels</span>
+                      </span>
+                    </div>
+                    <div class="node-card" style="--node-color: var(--green);">
+                      <span>
+                        <strong>Transformer segmenter</strong>
+                        <span>Global context for thin vessel structure</span>
+                      </span>
+                    </div>
+                    <div class="node-card" style="--node-color: var(--amber);">
+                      <span>
+                        <strong>Segmentation output</strong>
+                        <span>Data efficiency and vessel quality</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="preview-caption">
+                  <div class="preview-bars" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="caption-lockup">
+                    <strong>Unpublished thesis work</strong>
+                    <span>Central retinal blood vessel segmentation for small datasets</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="showcase-content">
-              <div class="work-kicker">Primary focus | Computer vision research</div>
-              <h3>Data-efficient vision models for medical imaging.</h3>
-              <p>My thesis and research assistant work focused on Transformer-based segmentation for small medical image datasets, especially retinal blood vessel segmentation. The work connects preprocessing, model architecture, evaluation, and publication-level experimentation.</p>
+              <div class="work-kicker">Thesis work | Computer vision research</div>
+              <h3>A Transformer Based Segmenter Optimized for Small Datasets: Central Retinal Blood Vessel Segmentation as a Use Case</h3>
+              <p>My thesis work focuses on Transformer-based segmentation for small medical image datasets, using central retinal blood vessel segmentation as the use case. The work connects preprocessing, model architecture, evaluation, and data-efficient medical imaging research.</p>
               <div class="evidence-grid" aria-label="Computer vision research evidence">
                 <div class="evidence-card">
                   <strong>Medical imaging</strong>
@@ -1261,8 +1974,8 @@
                   <span>Transformer-based segmentation under limited data</span>
                 </div>
                 <div class="evidence-card">
-                  <strong>Publication</strong>
-                  <span>ICCIT 2023 paper on color fundus photographs</span>
+                  <strong>Thesis status</strong>
+                  <span>Unpublished research work in progress</span>
                 </div>
               </div>
               <div class="tag-row">
@@ -1272,7 +1985,7 @@
                 <span class="tag">Segmentation</span>
               </div>
               <div class="work-actions">
-                <a class="text-link" href="#research">View publication</a>
+                <a class="text-link" href="#research">View thesis and publication</a>
                 <a class="text-link" href="assets/New_cv_rudro.pdf" target="_blank" rel="noopener">Open CV</a>
               </div>
             </div>
@@ -1306,7 +2019,50 @@
               </div>
             </div>
             <div class="showcase-media">
-              <img src="assets/Multilingual-rag.png" alt="LLM and retrieval visual showing source documents, hybrid retrieval, and grounded responses">
+              <div class="creative-preview rag-preview" aria-label="Bangla-English RAG hybrid retrieval preview">
+                <div class="preview-topline">
+                  <span>Bangla-English RAG</span>
+                  <span>FAISS + BM25</span>
+                </div>
+                <div class="preview-body rag-workflow">
+                  <div class="rag-box">
+                    <strong>Source documents</strong>
+                    <div class="rag-doc">বাংলা passage</div>
+                    <div class="rag-doc">English passage</div>
+                    <div class="rag-doc">Chunk metadata</div>
+                  </div>
+                  <div class="rag-box rag-engine">
+                    <strong>Hybrid retrieval core</strong>
+                    <div class="rag-track" style="--track-color: var(--blue);">
+                      <span>
+                        <strong>Dense search</strong>
+                        <span>FAISS semantic matches</span>
+                      </span>
+                    </div>
+                    <div class="rag-track" style="--track-color: var(--amber);">
+                      <span>
+                        <strong>Lexical search</strong>
+                        <span>BM25 keyword grounding</span>
+                      </span>
+                    </div>
+                    <div class="answer-pill">Rank, merge, cite context</div>
+                  </div>
+                  <div class="rag-box answer-card">
+                    <strong>Answer layer</strong>
+                    <span>Question</span>
+                    <div class="rag-line"></div>
+                    <div class="rag-line"></div>
+                    <div class="rag-line"></div>
+                    <div class="answer-pill">Grounded response</div>
+                  </div>
+                </div>
+                <div class="rag-query" aria-label="RAG system tags">
+                  <span>Bangla-English</span>
+                  <span>RAG</span>
+                  <span>Hybrid retrieval</span>
+                  <span>FastAPI</span>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -1475,15 +2231,23 @@
         <div class="section-head">
           <div class="eyebrow">Research</div>
           <div>
-            <h2>Research direction: data-efficient vision models for medical imaging.</h2>
+            <h2>Research direction and peer-reviewed publication.</h2>
           </div>
         </div>
 
-        <article class="research-panel">
-          <div class="research-label">Peer-reviewed publication | ICCIT 2023</div>
-          <h3>Competency Comparison of Deep Neural Networks for Identifying Gender in Color Fundus Photographs</h3>
-          <p>Published at the 26th International Conference on Computer and Information Technology in Cox's Bazar, Bangladesh. DOI: <a href="https://doi.org/10.1109/ICCIT60459.2023.10441623" target="_blank" rel="noopener">10.1109/ICCIT60459.2023.10441623</a></p>
-        </article>
+        <div class="research-list">
+          <article class="research-panel">
+            <div class="research-label">Unpublished thesis work | In progress</div>
+            <h3>A Transformer Based Segmenter Optimized for Small Datasets: Central Retinal Blood Vessel Segmentation as a Use Case</h3>
+            <p>Current thesis work on a Transformer-based segmenter for central retinal blood vessel segmentation under small-dataset constraints. This work is not published yet.</p>
+          </article>
+
+          <article class="research-panel publication-panel">
+            <div class="research-label">Peer-reviewed publication | ICCIT 2023</div>
+            <h3>Competency Comparison of Deep Neural Networks for Identifying Gender in Color Fundus Photographs</h3>
+            <p>Published at the 26th International Conference on Computer and Information Technology in Cox's Bazar, Bangladesh. DOI: <a href="https://doi.org/10.1109/ICCIT60459.2023.10441623" target="_blank" rel="noopener">10.1109/ICCIT60459.2023.10441623</a></p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -1599,8 +2363,34 @@
     const revealEls = document.querySelectorAll('.reveal');
     const sections = document.querySelectorAll('main section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
+    const cursorSignal = document.querySelector('.cursor-signal');
+    const canUsePointerSignal = window.matchMedia('(pointer: fine)').matches
+      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     year.textContent = 'Updated ' + new Date().getFullYear();
+
+    if (cursorSignal && canUsePointerSignal) {
+      document.body.classList.add('has-pointer');
+      let cursorX = window.innerWidth / 2;
+      let cursorY = window.innerHeight / 2;
+      let targetX = cursorX;
+      let targetY = cursorY;
+
+      window.addEventListener('pointermove', (event) => {
+        targetX = event.clientX;
+        targetY = event.clientY;
+      }, { passive: true });
+
+      const moveSignal = () => {
+        cursorX += (targetX - cursorX) * 0.12;
+        cursorY += (targetY - cursorY) * 0.12;
+        document.documentElement.style.setProperty('--cursor-x', cursorX + 'px');
+        document.documentElement.style.setProperty('--cursor-y', cursorY + 'px');
+        requestAnimationFrame(moveSignal);
+      };
+
+      moveSignal();
+    }
 
     window.addEventListener('scroll', () => {
       header.classList.toggle('is-scrolled', window.scrollY > 8);
