@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820" role="img" aria-labelledby="title desc">
+  <title id="title">Computer vision research visual</title>
+  <desc id="desc">A professional medical imaging style visual showing retinal segmentation, model attention, and evaluation signals.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbf8"/>
+      <stop offset="1" stop-color="#e5eee8"/>
+    </linearGradient>
+    <radialGradient id="retina" cx="48%" cy="45%" r="55%">
+      <stop offset="0" stop-color="#ffcf9c"/>
+      <stop offset="0.45" stop-color="#d36b45"/>
+      <stop offset="1" stop-color="#522036"/>
+    </radialGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#17202a" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="820" rx="34" fill="url(#bg)"/>
+  <g opacity="0.56" stroke="#d7e2da" stroke-width="2">
+    <path d="M0 120h1280M0 240h1280M0 360h1280M0 480h1280M0 600h1280M0 720h1280"/>
+    <path d="M120 0v820M240 0v820M360 0v820M480 0v820M600 0v820M720 0v820M840 0v820M960 0v820M1080 0v820M1200 0v820"/>
+  </g>
+  <g filter="url(#softShadow)">
+    <rect x="86" y="78" width="1110" height="642" rx="26" fill="#ffffff" stroke="#c8d5cc" stroke-width="2"/>
+    <rect x="86" y="78" width="1110" height="72" rx="26" fill="#17202a"/>
+    <circle cx="126" cy="114" r="9" fill="#b54a3a"/>
+    <circle cx="158" cy="114" r="9" fill="#c87524"/>
+    <circle cx="190" cy="114" r="9" fill="#2f7d5a"/>
+    <text x="240" y="122" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">Retinal Vessel Segmentation Lab</text>
+  </g>
+  <g transform="translate(142 196)">
+    <rect width="430" height="430" rx="24" fill="#121926"/>
+    <circle cx="215" cy="215" r="162" fill="url(#retina)"/>
+    <circle cx="258" cy="202" r="28" fill="#ffe7c0" opacity="0.92"/>
+    <g fill="none" stroke="#ffe7c0" stroke-linecap="round" opacity="0.82">
+      <path d="M255 205C214 193 178 174 126 118" stroke-width="9"/>
+      <path d="M255 205C204 229 176 256 118 322" stroke-width="8"/>
+      <path d="M255 205C302 218 339 246 370 318" stroke-width="8"/>
+      <path d="M255 205C302 176 344 150 380 98" stroke-width="7"/>
+      <path d="M211 192C180 210 151 218 103 215" stroke-width="5"/>
+      <path d="M197 229C174 241 146 252 104 278" stroke-width="4"/>
+      <path d="M306 219C334 223 354 236 391 260" stroke-width="4"/>
+      <path d="M300 184C320 168 345 160 392 151" stroke-width="4"/>
+    </g>
+    <g fill="none" stroke="#5fd8da" stroke-linecap="round" opacity="0.72">
+      <path d="M255 205C214 193 178 174 126 118" stroke-width="3"/>
+      <path d="M255 205C204 229 176 256 118 322" stroke-width="3"/>
+      <path d="M255 205C302 218 339 246 370 318" stroke-width="3"/>
+      <path d="M255 205C302 176 344 150 380 98" stroke-width="3"/>
+    </g>
+    <rect x="24" y="24" width="128" height="34" rx="17" fill="#ffffff" opacity="0.92"/>
+    <text x="42" y="47" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#1f5f8b">Fundus input</text>
+  </g>
+  <g transform="translate(642 204)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#637381">Research pipeline</text>
+    <g transform="translate(0 34)">
+      <rect width="392" height="76" rx="16" fill="#f6f8f6" stroke="#dbe3dc"/>
+      <circle cx="38" cy="38" r="12" fill="#1f5f8b"/>
+      <text x="68" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#17202a">Limited medical image data</text>
+      <text x="68" y="56" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#637381">Preprocessing, augmentation, vessel labels</text>
+    </g>
+    <g transform="translate(0 130)">
+      <rect width="392" height="76" rx="16" fill="#f6f8f6" stroke="#dbe3dc"/>
+      <circle cx="38" cy="38" r="12" fill="#2f7d5a"/>
+      <text x="68" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#17202a">Transformer attention</text>
+      <text x="68" y="56" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#637381">Global context for thin vessel structure</text>
+    </g>
+    <g transform="translate(0 226)">
+      <rect width="392" height="76" rx="16" fill="#f6f8f6" stroke="#dbe3dc"/>
+      <circle cx="38" cy="38" r="12" fill="#c87524"/>
+      <text x="68" y="34" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#17202a">Evaluation and ablation</text>
+      <text x="68" y="56" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#637381">Data efficiency, segmentation quality</text>
+    </g>
+    <path d="M196 110v20M196 206v20" stroke="#bdc9c0" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(650 560)">
+    <rect width="112" height="12" rx="6" fill="#1f5f8b"/>
+    <rect y="28" width="188" height="12" rx="6" fill="#2f7d5a"/>
+    <rect y="56" width="150" height="12" rx="6" fill="#c87524"/>
+    <text x="220" y="38" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="900" fill="#17202a">Computer Vision Research</text>
+    <text x="220" y="68" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#637381">Medical imaging, segmentation, data-efficient models</text>
+  </g>
+</svg>
