@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nirjor Saha Rudro — AI Engineer, Computer Vision & Deep Learning</title>
+<meta name="description" content="Portfolio of Nirjor Saha Rudro — AI Engineer working on computer vision, LLM-based systems, and retrieval-augmented generation. Dhaka, Bangladesh.">
+<meta property="og:title" content="Nirjor Saha Rudro — AI Engineer">
+<meta property="og:description" content="Computer vision, deep learning & LLM systems engineer. Portfolio, projects, and publication.">
+<meta property="og:image" content="assets/rudro.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230E1B26'/%3E%3Cpath d='M5 5v6M5 5h6M27 5v6M27 5h-6M5 27v-6M5 27h6M27 27v-6M27 27h-6' stroke='%23FFB22C' stroke-width='2.4' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1B26;
+    --ink-2:#13242F;
+    --ink-3:#1A2E3A;
+    --line:#28424F;
+    --paper:#ECEFEC;
+    --muted:#8FA4AC;
+    --signal:#FFB22C;
+    --cyan:#5FD8DA;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'IBM Plex Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+
+  ::selection{background:var(--signal);color:var(--ink);}
+
+  /* ---------- background grid ---------- */
+  .bg-grid{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.10;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 0%, black 40%, transparent 90%);
+  }
+
+  main, header, footer{position:relative;z-index:1;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  /* ---------- type helpers ---------- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    display:flex;align-items:center;gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{content:"[";color:var(--muted);}
+  .eyebrow::after{content:"]";color:var(--muted);}
+  .eyebrow span{white-space:nowrap;}
+
+  h1,h2,h3{font-family:var(--font-display);font-weight:700;margin:0;color:var(--paper);}
+  .muted{color:var(--muted);}
+  .mono{font-family:var(--font-mono);}
+
+  section{padding:96px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(14,27,38,0.7);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.nav.scrolled{border-color:var(--line);background:rgba(14,27,38,0.92);}
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .wordmark{
+    font-family:var(--font-mono);font-size:14px;letter-spacing:0.08em;
+    color:var(--paper);font-weight:500;flex:none;
+  }
+  .wordmark .b{color:var(--signal);}
+  .navlinks{
+    display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;
+    font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+    mask-image:linear-gradient(to right, black 92%, transparent 100%);
+    -webkit-mask-image:linear-gradient(to right, black 92%, transparent 100%);
+  }
+  .navlinks::-webkit-scrollbar{display:none;}
+  .navlinks a{color:var(--muted);white-space:nowrap;padding:4px 2px;border-bottom:1px solid transparent;transition:color .2s, border-color .2s;}
+  .navlinks a:hover, .navlinks a.active{color:var(--paper);border-color:var(--signal);}
+
+  /* ---------- hero ---------- */
+  .hero{padding-top:168px;padding-bottom:96px;border-bottom:1px solid var(--line);}
+  .hero-grid{display:grid;grid-template-columns:1.25fr 0.85fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(38px, 6vw, 62px);line-height:1.04;letter-spacing:-0.01em;}
+  .hero h1 .accent{color:var(--signal);}
+  .hero .role{
+    font-family:var(--font-mono);font-size:14px;letter-spacing:0.06em;
+    color:var(--cyan);margin-top:18px;text-transform:uppercase;
+  }
+  .hero p.lede{margin-top:22px;max-width:480px;color:var(--muted);font-size:17px;}
+  .hero .geo{
+    margin-top:28px;font-family:var(--font-mono);font-size:12px;color:var(--muted);
+    letter-spacing:0.04em;
+  }
+  .hero .geo b{color:var(--paper);font-weight:500;}
+
+  .cta-row{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-mono);font-size:13px;letter-spacing:0.04em;
+    padding:13px 22px;border-radius:2px;border:1px solid var(--line);
+    transition:border-color .2s, transform .2s, background .2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-solid{background:var(--signal);color:var(--ink);border-color:var(--signal);font-weight:500;}
+  .btn-solid:hover{transform:translateY(-2px);}
+  .btn-ghost{color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
+
+  /* ---------- photo frame (signature element) ---------- */
+  .frame{position:relative;width:100%;max-width:320px;margin:0 auto;}
+  .frame .corner{position:absolute;width:22px;height:22px;border:2px solid var(--cyan);}
+  .frame .corner.tl{top:-8px;left:-8px;border-right:none;border-bottom:none;}
+  .frame .corner.tr{top:-8px;right:-8px;border-left:none;border-bottom:none;}
+  .frame .corner.bl{bottom:-8px;left:-8px;border-right:none;border-top:none;}
+  .frame .corner.br{bottom:-8px;right:-8px;border-left:none;border-top:none;}
+  .frame-img{position:relative;overflow:hidden;background:var(--ink-2);}
+  .frame-img img{width:100%;aspect-ratio:1/1.05;object-fit:cover;filter:saturate(0.92) contrast(1.02);}
+  .frame-img::after{
+    content:"";position:absolute;left:0;right:0;height:2px;top:0;
+    background:linear-gradient(90deg, transparent, var(--signal), transparent);
+    animation:scan 2.4s ease-in-out 0.3s 1;
+  }
+  @keyframes scan{0%{top:0;opacity:0;}10%{opacity:1;}100%{top:100%;opacity:0;}}
+  .frame-cap{
+    margin-top:14px;text-align:center;font-family:var(--font-mono);font-size:11.5px;
+    letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;
+  }
+  .frame-cap b{color:var(--cyan);font-weight:500;}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:200px 1fr;gap:48px;}
+  .about-grid p{max-width:640px;color:var(--paper);font-size:16.5px;}
+  .about-grid p + p{margin-top:16px;}
+  .now{
+    margin-top:28px;display:inline-flex;align-items:baseline;gap:10px;
+    font-family:var(--font-mono);font-size:13px;padding:12px 16px;
+    border:1px solid var(--line);background:var(--ink-2);
+  }
+  .now .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);flex:none;
+    box-shadow:0 0 0 0 rgba(255,178,44,0.6);animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,178,44,0.5);}70%{box-shadow:0 0 0 6px rgba(255,178,44,0);}100%{box-shadow:0 0 0 0 rgba(255,178,44,0);}}
+
+  /* ---------- experience timeline ---------- */
+  .timeline{display:grid;grid-template-columns:200px 1fr;gap:48px;}
+  .tl-item{position:relative;padding-left:28px;border-left:1px solid var(--line);padding-bottom:44px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";position:absolute;left:-5px;top:4px;width:9px;height:9px;
+    background:var(--ink);border:2px solid var(--cyan);border-radius:50%;
+  }
+  .tl-date{font-family:var(--font-mono);font-size:12px;color:var(--signal);letter-spacing:0.05em;margin-bottom:6px;}
+  .tl-role{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--paper);}
+  .tl-org{color:var(--muted);font-size:14px;margin-top:2px;margin-bottom:14px;}
+  .tl-item ul{margin:0;padding-left:18px;color:var(--paper);font-size:15px;}
+  .tl-item li{margin-bottom:7px;}
+  .tl-item li::marker{color:var(--cyan);}
+
+  /* ---------- projects ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .card{
+    background:var(--ink-2);border:1px solid var(--line);padding:26px;
+    transition:border-color .2s, transform .2s;
+  }
+  .card:hover{border-color:var(--cyan);transform:translateY(-3px);}
+  .card-date{font-family:var(--font-mono);font-size:11.5px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+  .card h3{font-size:19px;margin-top:8px;margin-bottom:12px;line-height:1.3;}
+  .card ul{margin:0 0 16px;padding-left:18px;font-size:14.5px;color:var(--muted);}
+  .card li{margin-bottom:5px;}
+  .card li::marker{color:var(--signal);}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-family:var(--font-mono);font-size:11px;padding:4px 9px;border:1px solid var(--line);
+    color:var(--cyan);letter-spacing:0.02em;
+  }
+
+  /* ---------- publication (signature highlight) ---------- */
+  .pub-frame{position:relative;padding:36px;background:var(--ink-2);}
+  .pub-frame .corner{position:absolute;width:26px;height:26px;border:2px solid var(--signal);}
+  .pub-frame .corner.tl{top:-2px;left:-2px;border-right:none;border-bottom:none;}
+  .pub-frame .corner.tr{top:-2px;right:-2px;border-left:none;border-bottom:none;}
+  .pub-frame .corner.bl{bottom:-2px;left:-2px;border-right:none;border-top:none;}
+  .pub-frame .corner.br{bottom:-2px;right:-2px;border-left:none;border-top:none;}
+  .pub-tag{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;color:var(--signal);
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .pub-frame h3{font-size:22px;line-height:1.35;max-width:680px;}
+  .pub-meta{margin-top:14px;color:var(--muted);font-size:14.5px;}
+  .pub-meta a{color:var(--cyan);border-bottom:1px solid rgba(95,216,218,0.35);}
+  .pub-meta a:hover{color:var(--signal);border-color:var(--signal);}
+
+  /* ---------- education ---------- */
+  .edu-row{
+    display:grid;grid-template-columns:140px 1fr auto;gap:24px;align-items:baseline;
+    padding:20px 0;border-bottom:1px solid var(--line);
+  }
+  .edu-row:last-child{border-bottom:none;}
+  .edu-date{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);}
+  .edu-name{font-family:var(--font-display);font-weight:600;font-size:17px;}
+  .edu-org{color:var(--muted);font-size:14px;margin-top:2px;}
+  .edu-score{font-family:var(--font-mono);font-size:12.5px;color:var(--cyan);text-align:right;white-space:nowrap;}
+
+  /* ---------- skills ---------- */
+  .skill-group{margin-bottom:26px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-label{font-family:var(--font-mono);font-size:12px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:9px;}
+  .chip{
+    font-family:var(--font-mono);font-size:13px;padding:7px 13px;border:1px solid var(--line);
+    color:var(--paper);background:var(--ink-2);
+  }
+
+  /* ---------- certifications ---------- */
+  .cert-row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .cert-row:last-child{border-bottom:none;}
+  .cert-name{font-size:15.5px;}
+  .cert-src{font-family:var(--font-mono);font-size:11.5px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}
+
+  /* ---------- contact / footer ---------- */
+  footer{padding:90px 0 36px;}
+  .contact-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:start;}
+  footer h2{font-size:clamp(30px,4.5vw,44px);line-height:1.1;}
+  footer .lede{color:var(--muted);margin-top:16px;max-width:420px;}
+  .contact-links{display:flex;flex-direction:column;gap:4px;}
+  .contact-links a{
+    font-family:var(--font-mono);font-size:15px;padding:14px 0;border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;color:var(--paper);transition:color .2s,padding-left .2s;
+  }
+  .contact-links a:hover{color:var(--signal);padding-left:6px;}
+  .contact-links a .arrow{color:var(--cyan);transition:transform .2s;}
+  .contact-links a:hover .arrow{transform:translateX(4px);}
+  .foot-bottom{
+    margin-top:64px;padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-family:var(--font-mono);font-size:11.5px;color:var(--muted);letter-spacing:0.04em;
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;gap:48px;}
+    .hero{padding-top:140px;}
+    .frame{order:-1;max-width:220px;}
+    .about-grid, .timeline{grid-template-columns:1fr;gap:20px;}
+    .proj-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;gap:36px;}
+    section{padding:72px 0;}
+    .edu-row{grid-template-columns:1fr;gap:4px;}
+    .edu-score{text-align:left;}
+  }
+  @media (max-width:480px){
+    .wrap{padding:0 20px;}
+    .nav-inner{padding:14px 20px;}
+    .navlinks{gap:14px;font-size:11px;}
+    .wordmark{font-size:13px;}
+    .cta-row{flex-direction:column;align-items:stretch;}
+    .btn{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <div class="wordmark">[ N<span class="b">.</span>S<span class="b">.</span>R ]</div>
+    <nav class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#publication">Publication</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>Nirjor Saha<br><span class="accent">Rudro</span></h1>
+        <div class="role">AI Engineer — Computer Vision &amp; Deep Learning</div>
+        <p class="lede">Building real-time vision systems and LLM-based pipelines — from production conveyor-line detection to bilingual retrieval-augmented generation. Previously a research assistant working on data-efficient models for medical imaging.</p>
+        <div class="geo">23.8103°N, 90.4125°E — <b>DHAKA, BANGLADESH</b></div>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="assets/Nirjor_Saha_Rudro_CV.pdf" target="_blank" rel="noopener">Download CV ↓</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          <a class="btn btn-ghost" href="https://github.com/Nirjorsaharudro" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="frame">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="frame-img">
+          <img src="assets/rudro.jpg" alt="Portrait of Nirjor Saha Rudro" loading="eager">
+        </div>
+        <div class="frame-cap"><b>AI Engineer</b> · CV / DL</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap reveal">
+    <div class="about-grid">
+      <div class="eyebrow"><span>About</span></div>
+      <div>
+        <p>I'm an AI Engineer at Deep Mind Labs, where I work across computer vision and LLM-based systems — designing real-time detection pipelines for industrial monitoring and building retrieval-augmented generation systems for research and healthcare. My background spans full-stack development, Linux infrastructure, and production deployment of deep learning models.</p>
+        <p>Before this, I was a research assistant in the Deep Research Group at the University of Rajshahi, where my thesis explored data-efficient Transformer architectures for medical image segmentation — work that was later extended into a peer-reviewed publication. I'm now looking toward graduate study to deepen that research thread, particularly at the intersection of computer vision and applied deep learning.</p>
+        <div class="now"><span class="dot"></span> Currently building: real-time CV pipelines &amp; multilingual RAG systems</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="wrap reveal">
+    <div class="timeline">
+      <div class="eyebrow"><span>Experience</span></div>
+      <div>
+        <div class="tl-item">
+          <div class="tl-date">APR 2025 — PRESENT</div>
+          <div class="tl-role">AI Engineer</div>
+          <div class="tl-org">Deep Mind Labs · Dhaka, Bangladesh</div>
+          <ul>
+            <li>Integrated large language models using LangChain and LangGraph across research and healthcare domains</li>
+            <li>Built scalable orchestration pipelines using MCP</li>
+            <li>Developed production-grade Retrieval-Augmented Generation (RAG) systems</li>
+            <li>Designed and deployed real-time computer vision pipelines for detecting and classifying items on moving roller conveyors</li>
+            <li>Developed backend REST APIs and real-time WebSocket services using Django and FastAPI</li>
+            <li>Containerized and deployed AI systems using Docker for scalable, reproducible environments</li>
+            <li>Collaborated cross-functionally to deliver end-to-end AI solutions</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">FEB 2025 — MAR 2025</div>
+          <div class="tl-role">AI Intern</div>
+          <div class="tl-org">Deep Mind Labs · Dhaka, Bangladesh</div>
+          <ul>
+            <li>Applied LangChain and LangGraph for AI-powered applications</li>
+            <li>Fine-tuned large language models for task-specific optimization</li>
+            <li>Designed automated AI workflows using n8n</li>
+            <li>Assisted in deployment and evaluation of AI services</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="wrap reveal">
+    <div class="eyebrow"><span>Projects</span></div>
+    <div class="proj-grid">
+      <div class="card">
+        <div class="card-date">Aug 2025</div>
+        <h3>Multilingual RAG — Bangla &amp; English</h3>
+        <ul>
+          <li>Built a bilingual retrieval-augmented generation pipeline supporting Bangla and English queries</li>
+          <li>Implemented hybrid retrieval combining FAISS and BM25</li>
+          <li>Deployed as a REST API using FastAPI</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">FAISS</span><span class="tag">FastAPI</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">Feb 2023 — Nov 2024 · BSc Thesis</div>
+        <h3>Transformer-Based Segmenter for Small Datasets</h3>
+        <ul>
+          <li>Designed data-efficient Transformer models for retinal blood vessel segmentation</li>
+          <li>Built preprocessing pipelines for medical image datasets</li>
+        </ul>
+        <div class="tags"><span class="tag">TensorFlow</span><span class="tag">Transformers</span><span class="tag">Medical Imaging</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">Nov 2022 — Jan 2023</div>
+        <h3>Wav2Lip Implementation (TensorFlow)</h3>
+        <ul>
+          <li>Reimplemented Wav2Lip from PyTorch into TensorFlow</li>
+          <li>Resolved framework-specific weight initialization and layer behavior differences</li>
+        </ul>
+        <div class="tags"><span class="tag">TensorFlow</span><span class="tag">PyTorch</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">2021 — 2022</div>
+        <h3>Game Development Projects — Unity</h3>
+        <ul>
+          <li>Built a strategy-based tower defense game with dynamic enemy waves and upgrades</li>
+          <li>Developed additional 2D platformer and AR-based gameplay experiences</li>
+        </ul>
+        <div class="tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">AR</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATION -->
+  <section id="publication" class="wrap reveal">
+    <div class="eyebrow"><span>Publication</span></div>
+    <div class="pub-frame">
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="pub-tag">Peer-Reviewed · ICCIT 2023</div>
+      <h3>Competency Comparison of Deep Neural Networks for Identifying Gender in Color Fundus Photographs</h3>
+      <div class="pub-meta">
+        26th International Conference on Computer and Information Technology (ICCIT) · Nov 2023 · Cox's Bazar, Bangladesh<br>
+        DOI: <a href="https://doi.org/10.1109/ICCIT60459.2023.10441623" target="_blank" rel="noopener">10.1109/ICCIT60459.2023.10441623 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="wrap reveal">
+    <div class="eyebrow"><span>Education</span></div>
+    <div>
+      <div class="edu-row">
+        <div class="edu-date mono">2019 — 2024</div>
+        <div>
+          <div class="edu-name">BSc in Computer Science &amp; Engineering</div>
+          <div class="edu-org">University of Rajshahi</div>
+        </div>
+        <div class="edu-score">CGPA 3.22 / 4.00</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-date mono">2016 — 2018</div>
+        <div>
+          <div class="edu-name">Higher Secondary Certificate</div>
+          <div class="edu-org">Shaparan Govt. College</div>
+        </div>
+        <div class="edu-score">GPA 4.69 / 5.00</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-date mono">2014 — 2016</div>
+        <div>
+          <div class="edu-name">Secondary School Certificate</div>
+          <div class="edu-org">Ram Sundar Pilot High School</div>
+        </div>
+        <div class="edu-score">GPA 4.72 / 5.00</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="wrap reveal">
+    <div class="eyebrow"><span>Skills</span></div>
+
+    <div class="skill-group">
+      <div class="skill-label">Deep Learning</div>
+      <div class="chip-row">
+        <span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">Transformers</span>
+        <span class="chip">CNN</span><span class="chip">RNN</span><span class="chip">LSTM</span><span class="chip">ViT</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-label">LLM &amp; Retrieval</div>
+      <div class="chip-row">
+        <span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">RAG</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-label">Computer Vision</div>
+      <div class="chip-row">
+        <span class="chip">Computer Vision</span><span class="chip">Real-time Detection Pipelines</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-label">Backend &amp; Infrastructure</div>
+      <div class="chip-row">
+        <span class="chip">Python</span><span class="chip">Django</span><span class="chip">FastAPI</span>
+        <span class="chip">SQL</span><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">Git</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-label">Other</div>
+      <div class="chip-row">
+        <span class="chip">Unity</span><span class="chip">AR</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="wrap reveal">
+    <div class="eyebrow"><span>Certifications</span></div>
+    <div>
+      <div class="cert-row"><div class="cert-name">Git &amp; GitHub for Open Source Collaboration</div><div class="cert-src">Coursera</div></div>
+      <div class="cert-row"><div class="cert-name">Introduction to C# Programming and Unity</div><div class="cert-src">Coursera</div></div>
+      <div class="cert-row"><div class="cert-name">Build Your First Android App</div><div class="cert-src">Coursera</div></div>
+      <div class="cert-row"><div class="cert-name">Programming Foundations with JavaScript, HTML, and CSS</div><div class="cert-src">Coursera</div></div>
+      <div class="cert-row"><div class="cert-name">Introduction to Game Development</div><div class="cert-src">Coursera</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact" class="wrap reveal">
+  <div class="contact-grid">
+    <div>
+      <div class="eyebrow"><span>Contact</span></div>
+      <h2>Let's talk research,<br>or roller conveyors.</h2>
+      <p class="lede">Open to graduate research opportunities in computer vision and deep learning, and always glad to talk shop about vision systems and LLM pipelines.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:nirjor.saha.rudro.bd@gmail.com">Email <span class="arrow mono">nirjor.saha.rudro.bd@gmail.com →</span></a>
+      <a href="https://linkedin.com/in/rudro-saha-77b3471ba" target="_blank" rel="noopener">LinkedIn <span class="arrow mono">↗</span></a>
+      <a href="https://github.com/Nirjorsaharudro" target="_blank" rel="noopener">GitHub <span class="arrow mono">↗</span></a>
+      <a href="assets/Nirjor_Saha_Rudro_CV.pdf" target="_blank" rel="noopener">Download CV <span class="arrow mono">↓</span></a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>NIRJOR SAHA RUDRO — DHAKA, BANGLADESH</div>
+    <div id="year"></div>
+  </div>
+</footer>
+
+<script>
+  // nav background on scroll
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+  }, { passive: true });
+
+  // scroll-reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+
+  // active nav link on scroll
+  const sections = document.querySelectorAll('main section[id], footer[id]');
+  const navLinks = document.querySelectorAll('.navlinks a');
+  if ('IntersectionObserver' in window) {
+    const navIo = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const link = document.querySelector('.navlinks a[href="#' + entry.target.id + '"]');
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    sections.forEach(s => navIo.observe(s));
+  }
+
+  document.getElementById('year').textContent = '© ' + new Date().getFullYear();
+</script>
+
+</body>
+</html>
