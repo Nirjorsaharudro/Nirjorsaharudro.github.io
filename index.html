@@ -9,6 +9,7 @@
   <meta property="og:description" content="Computer vision, deep learning, RAG systems, and applied AI engineering.">
   <meta property="og:image" content="assets/rudro.jpg">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317202a'/%3E%3Cpath d='M8 22V8h6.2c3.1 0 5 1.8 5 4.5 0 1.9-.9 3.2-2.6 3.9l4 5.6h-3.3l-3.5-5h-2.9v5H8Zm2.9-7.5h3c1.5 0 2.4-.7 2.4-2s-.9-2-2.4-2h-3v4Z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <script src="env.js"></script>
   <style>
     :root {
       --bg: #f6f8f6;
@@ -606,7 +607,8 @@
       border-left: 1px solid var(--line);
     }
 
-    .showcase-media > img {
+    .showcase-media > img,
+    .showcase-media > video {
       position: relative;
       z-index: 1;
       width: 100%;
@@ -1171,7 +1173,7 @@
 
     .demo-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
@@ -1609,7 +1611,8 @@
         order: -1;
       }
 
-      .showcase-media > img {
+      .showcase-media > img,
+      .showcase-media > video {
         min-height: 0;
         aspect-ratio: 16 / 10;
       }
@@ -1893,7 +1896,7 @@
           <div class="eyebrow">Research work</div>
           <div>
             <h2>Research-led AI work across computer vision and LLM systems.</h2>
-            <p>The strongest thread in my portfolio is applied research: data-efficient vision models, medical imaging, retrieval quality, bilingual grounding, and the engineering needed to make those systems usable.</p>
+            <p>The strongest thread in my portfolio is applied research: data-efficient vision models, medical imaging, retrieval quality, bilingual grounding, production computer vision deployments, and the engineering needed to make those systems usable.</p>
           </div>
         </div>
 
@@ -1991,6 +1994,91 @@
             </div>
           </article>
 
+          <article class="research-showcase reverse" id="project-healthcare">
+            <div class="showcase-content">
+              <div class="work-kicker">Production AI healthcare | National Pain Centers</div>
+              <h3>Automating musculoskeletal assessment for National Pain Centers' Virtual MSK program.</h3>
+              <p>Contributed as part of a team building the computer vision and LLM system behind National Pain Centers' Virtual MSK program, automating a process previously carried out entirely by doctors. It captures videos of a patient performing different movements, uses computer vision to measure joint angles and distances across those movements, and passes the measurements to an LLM that drafts a musculoskeletal health report. A doctor reviews and validates every report before it is used.</p>
+              <div class="evidence-grid" aria-label="Healthcare automation evidence">
+                <div class="evidence-card">
+                  <strong>Movement capture</strong>
+                  <span>Angle and distance measurement across multiple movement types</span>
+                </div>
+                <div class="evidence-card">
+                  <strong>LLM-drafted reporting</strong>
+                  <span>Measurements turned into a musculoskeletal health report</span>
+                </div>
+                <div class="evidence-card">
+                  <strong>Doctor-in-the-loop</strong>
+                  <span>Every report validated by a physician before use</span>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Computer Vision</span>
+                <span class="tag">Pose Estimation</span>
+                <span class="tag">LLM Reporting</span>
+                <span class="tag">Healthcare AI</span>
+              </div>
+              <div class="work-actions">
+                <a class="text-link" href="https://nationalpain.com/our-team/" target="_blank" rel="noopener">National Pain Centers team</a>
+              </div>
+            </div>
+            <div class="showcase-media">
+              <span class="video-label">Movement analysis output</span>
+              <video controls preload="metadata" poster="assets/healthcare-preview.jpg">
+                <source src="assets/healthcare-automation.mp4" type="video/mp4">
+              </video>
+            </div>
+          </article>
+
+          <article class="research-showcase" id="project-polar">
+            <div class="showcase-media">
+              <span class="video-label">Polar production feed</span>
+              <video controls preload="metadata" poster="assets/conveyor-preview.jpg">
+                <source src="assets/conveyor-detection.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="showcase-content">
+              <div class="work-kicker">Production deployment | Computer vision</div>
+              <h3>Real-time ice cream box detection, tracking, and classification for Polar.</h3>
+              <p>Owned this computer vision system end to end at Deep Mind Labs, from gathering requirements with the client, Polar (one of Bangladesh's major ice cream brands), through to full production rollout. It detects, tracks, and classifies ice cream box products on a moving conveyor in real time, keeping running per-class counts, and holds a stable 24.9-25 FPS against the live production camera.</p>
+              <div class="evidence-grid" aria-label="Conveyor detection evidence">
+                <div class="evidence-card">
+                  <strong>Production throughput</strong>
+                  <span>24.9-25 FPS sustained on the live camera feed</span>
+                </div>
+                <div class="evidence-card">
+                  <strong>Multi-class tracking</strong>
+                  <span>Per-type detection with running counts</span>
+                </div>
+                <div class="evidence-card">
+                  <strong>Delivery</strong>
+                  <span>Requirements gathering through production handoff</span>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Computer Vision</span>
+                <span class="tag">YOLO</span>
+                <span class="tag">Object Tracking</span>
+                <span class="tag">Real-time Systems</span>
+              </div>
+            </div>
+          </article>
+
+          <script>
+            (function () {
+              var env = window.PORTFOLIO_ENV || {};
+              if (env.SHOW_HEALTHCARE_PROJECT === false) {
+                var healthcareEl = document.getElementById('project-healthcare');
+                if (healthcareEl) healthcareEl.remove();
+              }
+              if (env.SHOW_POLAR_PROJECT === false) {
+                var polarEl = document.getElementById('project-polar');
+                if (polarEl) polarEl.remove();
+              }
+            })();
+          </script>
+
           <article class="research-showcase reverse">
             <div class="showcase-content">
               <div class="work-kicker">Applied research | LLM and retrieval systems</div>
@@ -2068,8 +2156,39 @@
 
           <article class="research-showcase">
             <div class="showcase-media">
-              <img src="assets/Wav2lip.png" alt="Wav2Lip implementation visual showing audio-to-lip-sync synthesis">
+              <span class="video-label">Cement bag counter</span>
+              <video controls preload="metadata" poster="assets/dataset-labeling-preview.jpg">
+                <source src="assets/dataset-labeling-demo.mp4" type="video/mp4">
+              </video>
             </div>
+            <div class="showcase-content">
+              <div class="work-kicker">Applied research | Data pipeline engineering</div>
+              <h3>Semi-automated labeling pipeline for a cement bag counter.</h3>
+              <p>Built a system that counts cement bags crossing a running conveyor belt, and designed the pipeline that trains its detector. Hours of raw day and night CCTV footage become a trained model with minimal manual annotation: diversity-aware frame sampling, concept-prompt segmentation to pre-annotate boxes and masks, an automatic heuristic that bootstraps class labels for human review, and temporal block splitting so near-duplicate frames never leak between train and validation.</p>
+              <div class="evidence-grid" aria-label="Data pipeline evidence">
+                <div class="evidence-card">
+                  <strong>Pre-annotation</strong>
+                  <span>Concept-prompt segmentation bootstraps labels first</span>
+                </div>
+                <div class="evidence-card">
+                  <strong>Split integrity</strong>
+                  <span>Temporal block splits prevent near-duplicate leakage</span>
+                </div>
+                <div class="evidence-card">
+                  <strong>Outcome</strong>
+                  <span>Fine-tuned detector driving a live bag counter</span>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Data Engineering</span>
+                <span class="tag">Auto-labeling</span>
+                <span class="tag">YOLO</span>
+                <span class="tag">Dataset Pipelines</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="research-showcase reverse">
             <div class="showcase-content">
               <div class="work-kicker">Deep learning implementation | Audio-visual synthesis</div>
               <h3>Wav2Lip framework reimplementation in TensorFlow.</h3>
@@ -2098,6 +2217,9 @@
                 <a class="text-link" href="https://github.com/Nirjorsaharudro/Wav2Lip-in-Tensorflow" target="_blank" rel="noopener">GitHub repository</a>
               </div>
             </div>
+            <div class="showcase-media">
+              <img src="assets/Wav2lip.png" alt="Wav2Lip implementation visual showing audio-to-lip-sync synthesis">
+            </div>
           </article>
 
           <div class="demo-lab">
@@ -2106,7 +2228,7 @@
                 <div class="eyebrow">Demo previews</div>
                 <h3>Short previews that support the research story.</h3>
               </div>
-              <p>The RAG video shows the bilingual retrieval workflow. The game preview is kept secondary as proof of interactive systems experience.</p>
+              <p>The RAG video shows the bilingual retrieval workflow, the local LLM demo shows a self-hosted multimodal chat running on our own hardware, and the game preview is kept secondary as proof of interactive systems experience.</p>
             </div>
 
             <div class="demo-grid">
@@ -2125,6 +2247,25 @@
                     <span class="tag">Bangla-English</span>
                     <span class="tag">RAG</span>
                     <span class="tag">Retrieval</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="demo-card compact">
+                <div class="video-frame">
+                  <span class="video-label">Local LLM demo</span>
+                  <video controls preload="metadata" poster="assets/local-llm-preview.jpg">
+                    <source src="assets/local-llm-chat.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div>
+                  <div class="work-kicker">Personal project | Self-hosted LLM</div>
+                  <h3>Self-hosted multimodal chat on a single RTX 3060.</h3>
+                  <p>Built as a personal project to give my colleagues at Deep Mind Labs a free, private LLM to work with: I hosted Qwen3-VL 8B entirely on our own AI PC (one RTX 3060, 12GB VRAM), with image understanding, document parsing, live web lookup, custom agents, and MCP tool connections, served over the local network with nothing sent to the cloud.</p>
+                  <div class="tag-row">
+                    <span class="tag">Local LLM</span>
+                    <span class="tag">Multimodal</span>
+                    <span class="tag">MCP</span>
                   </div>
                 </div>
               </article>
@@ -2204,7 +2345,8 @@
               <ul>
                 <li>Integrated LLM systems with LangChain and LangGraph for research and healthcare use cases.</li>
                 <li>Developed production RAG systems and scalable orchestration pipelines using MCP.</li>
-                <li>Built computer vision pipelines for detecting and classifying items on moving roller conveyors.</li>
+                <li>Owned a computer vision pipeline for detecting, tracking, and classifying items on moving roller conveyors end to end, from requirements gathering to a production rollout sustaining 24.9-25 FPS on the live camera feed.</li>
+                <li>Contributed to a team-built computer vision and LLM system for National Pain Centers' Virtual MSK program, measuring joint angles and distances from patient movement videos and drafting musculoskeletal health reports for doctor validation.</li>
                 <li>Delivered REST APIs, WebSocket services, Dockerized deployments, and backend integrations with Django and FastAPI.</li>
               </ul>
             </div>
